@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Brand CSS Variables ── */
+:root {
+  --bg:    #07080c;
+  --s1:    #0c0e15;
+  --s2:    #10121a;
+  --bd:    rgba(255,255,255,0.07);
+  --bd2:   rgba(255,255,255,0.12);
+  --bl:    #2563eb;
+  --bl2:   #3b82f6;
+  --w:     #e8eaf2;
+  --w55:   rgba(232,234,242,0.55);
+  --w30:   rgba(232,234,242,0.30);
+  --w12:   rgba(232,234,242,0.12);
+  --w07:   rgba(232,234,242,0.07);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--w);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bl); border-radius: 3px; }
+
+/* ── Focus ring ── */
+*:focus-visible {
+  outline: 2px solid var(--bl2);
+  outline-offset: 2px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(59,130,246,.28);
+  color: var(--w);
+}
+
+/* ── Utility classes ── */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm text-white
+           bg-[#2563eb] hover:bg-[#1d4ed8] active:scale-[.97] transition-all duration-150 cursor-pointer;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm
+           text-[var(--w55)] border border-[var(--bd2)] hover:border-[var(--bd2)]
+           hover:text-[var(--w)] hover:bg-[var(--w07)] transition-all duration-150 cursor-pointer;
+  }
+
+  .card {
+    @apply rounded-2xl border border-[var(--bd)] bg-[var(--s1)] backdrop-blur-sm;
+  }
+
+  .card-hover {
+    @apply card hover:border-[rgba(59,130,246,.28)] hover:shadow-[0_0_28px_rgba(37,99,235,.08)]
+           transition-all duration-200;
+  }
+
+  .section-label {
+    @apply font-mono text-[10px] tracking-[.15em] uppercase text-[var(--bl2)];
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold tracking-[-0.03em] leading-tight text-[var(--w)];
+  }
+
+  .section-sub {
+    @apply text-[13.5px] text-[var(--w55)] font-light leading-relaxed;
+  }
+
+  .divider {
+    @apply h-px bg-[var(--bd)] w-full;
+  }
+}
+
+/* ── Animation utilities ── */
+.animate-delay-100 { animation-delay: .1s; }
+.animate-delay-200 { animation-delay: .2s; }
+.animate-delay-300 { animation-delay: .3s; }
+.animate-delay-400 { animation-delay: .4s; }
+.animate-delay-500 { animation-delay: .5s; }
+.animate-delay-600 { animation-delay: .6s; }
+
+/* ── Calendly modal styles ── */
+.calendly-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7,8,12,.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn .2s ease;
+}
+
+.calendly-modal {
+  background: var(--s1);
+  border: 1px solid var(--bd2);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 80px rgba(37,99,235,.18);
+  animation: fadeUp .25s ease;
+}
+
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px) }
+  to   { opacity: 1; transform: none }
+}
